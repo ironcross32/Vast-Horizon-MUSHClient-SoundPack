@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE muclient>
+<!-- Saved on Monday, November 09, 2020, 10:42 AM -->
+<!-- MuClient version 5.06 -->
+<!-- Written by Nick Gammon -->
+<!-- Home Page: http://www.mushclient.com/ -->
+<muclient>
+<world
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+
+   auto_say_override_prefix="-"
+   auto_say_string="say "
+   chat_name="Name-not-set"
+   command_stack_character=";"
+   id="802cc6dbd2db904067939971"
+   input_font_name="Fixedsys"
+   mapping_failure="Alas, you cannot go that way."
+   name="Vast Horizons"
+   new_activity_sound="(No sound)"
+   on_world_save="save_volumes"
+   on_world_open="load_volumes"
+   output_font_name="FixedSys"
+   script_editor="notepad"
+   script_editor_argument="%file"
+   script_filename="C:\Users\bcros\Documents\Mush-Z\worlds\Vast Horizons\vh.lua"
+   script_language="Lua"
+   script_prefix="\"
+   site="bunkicenter.net"
+   spam_message="look"
+   speed_walk_prefix="#"
+   terminal_identification="mushclient"
+
+   alt_arrow_recalls_partial="y"
+   arrows_change_history="y"
+   arrow_recalls_partial="y"
+   auto_pause="y"
+   auto_resize_minimum_lines="1"
+   auto_resize_maximum_lines="20"
+   chat_foreground_colour="red"
+   chat_background_colour="black"
+   chat_port="4050"
+   confirm_before_replacing_typing="y"
+   confirm_on_paste="y"
+   confirm_on_send="y"
+   default_trigger_sequence="100"
+   default_alias_sequence="100"
+   detect_pueblo="y"
+   display_my_input="y"
+   echo_hyperlink_in_output_window="y"
+   edit_script_with_notepad="y"
+   enable_aliases="y"
+   enable_beeps="y"
+   enable_scripts="y"
+   enable_timers="y"
+   enable_triggers="y"
+   enable_trigger_sounds="y"
+   escape_deletes_input="y"
+   fade_output_opacity_percent="20"
+   fade_output_seconds="8"
+   history_lines="1000"
+   hyperlink_adds_to_command_history="y"
+   hyperlink_colour="#0080FF"
+   indent_paras="y"
+   input_background_colour="white"
+   input_font_height="9"
+   input_font_weight="400"
+   input_text_colour="black"
+   keypad_enable="y"
+   log_output="y"
+   max_output_lines="5000"
+   mud_can_change_link_colour="y"
+   mud_can_change_options="y"
+   note_text_colour="#040000"
+   output_font_height="9"
+   output_font_weight="400"
+   paste_delay_per_lines="1"
+   pixel_offset="1"
+   port="7979"
+   proxy_port="1080"
+   save_world_automatically="y"
+   script_errors_to_output_window="y"
+   send_file_delay_per_lines="1"
+   send_keep_alives="y"
+   send_mxp_afk_response="y"
+   show_connect_disconnect="y"
+   show_italic="y"
+   show_underline="y"
+   spam_line_count="20"
+   tab_completion_lines="200"
+   timestamp_input_text_colour="maroon"
+   timestamp_notes_text_colour="blue"
+   timestamp_output_text_colour="white"
+   timestamp_input_back_colour="black"
+   timestamp_notes_back_colour="black"
+   timestamp_output_back_colour="black"
+   tool_tip_visible_time="5000"
+   tool_tip_start_time="400"
+   treeview_triggers="y"
+   treeview_aliases="y"
+   treeview_timers="y"
+   underline_hyperlinks="y"
+   unpause_on_send="y"
+   use_custom_link_colour="y"
+   use_default_input_font="y"
+   use_default_output_font="y"
+   warn_if_scripting_inactive="y"
+   wrap="y"
+   wrap_column="80"
+   write_world_name_to_log="y"
+   > <!-- end of general world attributes -->
+
+</world>
+
+<!-- triggers -->
+
+<triggers
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+  >
+  <trigger
+   enabled="y"
+   group="salvaging"
+   match=".* falls away from a shipwreck\."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/salvaging/disassembled"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^([Aa]|[Aa]n) \w+ mining borer grinds to a sudden stop\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_grind_halt"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^([Aa]|[Aa]n) \w+ mining borer slowly moves dirt and rock away from the unit\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_moving_dirt"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^([Aa]|[Aa]n) \w+ mining borer whines loudly while digging deeper into the shaft\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_whine"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="ground combat"
+   match="^(a|an) .* keels over, takes its last breath, and dies\!$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/ground combat/ground_kill"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="communication"
+   match="^.+ (says|asks).*, \&quot;.*"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="communication/say", vol="cv"}
+Execute("history_add say=%0")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^A display on (a|an) \w+ mining scanner reads, \&quot;No minerals were located\.\&quot;$"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^A screen on (a|an) \w+ mining borer displays the following (mineral)s? (was|were) collected: .+\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/scanner_minerals_found"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^A spark shoots out from (a|an) \w+ mining borer as it strikes a large stone\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_hit_stone"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="communication"
+   match="^A voice emanates from the speaker on a flight control scanner:.*$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play_random{snd="communication/flightscanner", max=5, vol="cv"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="sifting"
+   match="^A\s*bar\s*on\s*a\s*baby\s*pebble sifter\s*flashes,\s*showing\s*you\s*its progress\.?"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/sifting/sifter_progress_beep"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^Grinding comes from (a|an) \w+ mining borer and it slows to a halt as it gets damaged\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_stop_damaged"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^Small rocks fly up from around (a|an) \w+ mining borer as it continues boring deeper into the shaft\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_rocks_fly"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="starship"
+   match="^The computer announces, \&quot;.*"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^The display on (a|an) \w+ mining scanner reads, \&quot;\d+ (mineral)s? were located\. They are as follows: .*$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="scanner_minerals_found"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="sifting"
+   match="^The display screen on your net flashes, indicating that a pebble with traces of Glatonite was found\."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/sifting/sifter_found_mineral"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="sifting"
+   match="^The display screen on your net flashes, indicating that you found no pebbles\."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/sifting/sifter_found_nothing"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^The motor on (a|an) \w+ mining borer goes quiet as the unit shuts down\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_stop_normally"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^This area has already been scanned\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/room_already_scanned"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="ground combat"
+   match="^You aim at (a|an) .+ with (a|an) .+, and fire \d+ shots?\!$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/ground combat/dartgun_fire"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You bend down and pick up a long mining tube\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/player_pickup_mining_tube"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You connect a long mining tube to (a|an) \w+ mining borer\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_and_minecart_connect"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You connect a long mining tube to (a|an) \w+ mining cart\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_and_minecart_connect"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You disconnect a long mining tube from (a|an) \w+ mining borer\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_and_minecart_disconnect"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You disconnect a long mining tube from (a|an) \w+ mining cart\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_and_minecart_disconnect"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You flip a switch on (a|an) \w+ mining cart, unlocking the power handle, and then push the handle up with all your might\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/minecart_vacuum_sequence"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="sifting"
+   match="^You lean over and dip a baby pebble sifter into the water\. After a moment, you begin moving it around\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/sifting/sifter_start"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You open a little door on the side of (a|an) \w+ mining cart and place a long mining tube in an equipment storage compartment\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/player_place_tube"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You push a button on (a|an) \w+ mining borer which begins to dig a shaft into the mine's surface\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/borer_start"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You push a button on (a|an) \w+ mining cart, and metal control arms gently grab onto (a|an) \w+ mining borer, storing it inside the storage area of the cart\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/minecart_borer_load"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You push a button on (a|an) \w+ mining cart, and metal control arms gently lower (a|an) \w+ mining borer to the ground, properly orienting it\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/minecart_borer_unload"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="notifications"
+   match="^You shouldn't enter so many commands at once\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="notifications/too_many_commands"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You swipe your finger across (a|an) \w+ mining scanner, and it begins scanning for minerals\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/mining/scanner_scan"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="ground combat"
+   match="^Your darts? explodes? as (it|they) hits? (a|an) .+$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/ground combat/dart_impact_and_explode"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="sifting"
+   match="^Your net continues sifting\."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/sifting/sifter_continue"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="sifting"
+   match="^Your sifter flashes red and a message on the screen reads, \&quot;please restart the sifting process to continue\.\&quot;$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="activities/sifting/sifter_restart"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="notifications"
+   match="^\[Game Change\]:.*"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="notifications/game_change"}</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="communication"
+   match="^\[General Communication\] .+ transmits.*"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="communication/general", vol="cv"}
+Execute("history_add GenCom=%0")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="communication"
+   match="^\[Newbie\] .*:.*"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="communication/newbie", vol="cv"}
+Execute("history_add Newbie=%0")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="communication"
+   match="^\[Tactical Communication\] (.*)"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>play{snd="communication/tactical", vol="cv"}
+Execute("history_add tactical=%1")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="mining"
+   match="^You open a little door on the side of (a|an) .* mining cart and remove a long mining tube from an equipment storage compartment\.$"
+   regexp="y"
+   send_to="12"
+   sequence="101"
+  >
+  <send>play{snd="activities/mining/player_retrieve_tube"}</send>
+  </trigger>
+</triggers>
+
+<!-- aliases -->
+
+<aliases
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+  >
+  <alias
+   match="^sp_(a|c|g)v\s*([+-])?\s*(\d+)"
+   enabled="y"
+   group="soundpack functions"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>
+number = </send>
+  </alias>
+</aliases>
+
+<!-- timers -->
+
+<timers
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+  >
+</timers>
+
+<!-- macros -->
+
+<macros
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+  >
+
+  <macro name="up" type="send_now" >
+  <send>up</send>
+
+  </macro>
+
+  <macro name="down" type="send_now" >
+  <send>down</send>
+
+  </macro>
+
+  <macro name="north" type="send_now" >
+  <send>north</send>
+
+  </macro>
+
+  <macro name="south" type="send_now" >
+  <send>south</send>
+
+  </macro>
+
+  <macro name="east" type="send_now" >
+  <send>east</send>
+
+  </macro>
+
+  <macro name="west" type="send_now" >
+  <send>west</send>
+
+  </macro>
+
+  <macro name="examine" type="replace" >
+  <send>examine </send>
+
+  </macro>
+
+  <macro name="look" type="replace" >
+  <send>look </send>
+
+  </macro>
+
+  <macro name="page" type="replace" >
+  <send>page </send>
+
+  </macro>
+
+  <macro name="say" type="replace" >
+  <send>say </send>
+
+  </macro>
+
+  <macro name="whisper" type="replace" >
+  <send>whisper </send>
+
+  </macro>
+
+  <macro name="doing" type="send_now" >
+  <send>DOING</send>
+
+  </macro>
+
+  <macro name="who" type="send_now" >
+  <send>WHO</send>
+
+  </macro>
+
+  <macro name="drop" type="replace" >
+  <send>drop </send>
+
+  </macro>
+
+  <macro name="take" type="replace" >
+  <send>take </send>
+
+  </macro>
+
+  <macro name="logout" type="send_now" >
+  <send>LOGOUT</send>
+
+  </macro>
+
+  <macro name="quit" type="send_now" >
+  <send>QUIT</send>
+
+  </macro>
+</macros>
+
+<!-- variables -->
+
+<variables
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+  >
+  <variable name="av">20</variable>
+  <variable name="cv">30</variable>
+  <variable name="gv">40</variable>
+</variables>
+
+<!-- colours -->
+
+<colours
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+  >
+
+<ansi>
+
+ <normal>
+   <colour seq="1" rgb="black" />
+   <colour seq="2" rgb="maroon" />
+   <colour seq="3" rgb="green" />
+   <colour seq="4" rgb="olive" />
+   <colour seq="5" rgb="navy" />
+   <colour seq="6" rgb="purple" />
+   <colour seq="7" rgb="teal" />
+   <colour seq="8" rgb="silver" />
+
+ </normal>
+
+ <bold>
+   <colour seq="1" rgb="gray" />
+   <colour seq="2" rgb="red" />
+   <colour seq="3" rgb="lime" />
+   <colour seq="4" rgb="yellow" />
+   <colour seq="5" rgb="blue" />
+   <colour seq="6" rgb="magenta" />
+   <colour seq="7" rgb="cyan" />
+   <colour seq="8" rgb="white" />
+
+ </bold>
+
+</ansi>
+
+<custom>
+  <colour seq="1" name="Custom1" text="#FF8080" back="black" />
+  <colour seq="2" name="Custom2" text="#FFFF80" back="black" />
+  <colour seq="3" name="Custom3" text="#80FF80" back="black" />
+  <colour seq="4" name="Custom4" text="#80FFFF" back="black" />
+  <colour seq="5" name="Custom5" text="#0080FF" back="black" />
+  <colour seq="6" name="Custom6" text="#FF80C0" back="black" />
+  <colour seq="7" name="Custom7" text="red" back="black" />
+  <colour seq="8" name="Custom8" text="#0080C0" back="black" />
+  <colour seq="9" name="Custom9" text="magenta" back="black" />
+  <colour seq="10" name="Custom10" text="#804040" back="black" />
+  <colour seq="11" name="Custom11" text="#FF8040" back="black" />
+  <colour seq="12" name="Custom12" text="teal" back="black" />
+  <colour seq="13" name="Custom13" text="#004080" back="black" />
+  <colour seq="14" name="Custom14" text="#FF0080" back="black" />
+  <colour seq="15" name="Custom15" text="green" back="black" />
+  <colour seq="16" name="Custom16" text="blue" back="black" />
+
+</custom>
+</colours>
+
+<!-- keypad -->
+
+<keypad
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+  >
+
+  <key name="0" >
+  <send>look</send>
+  </key>
+
+  <key name="1" >
+  <send>sw</send>
+  </key>
+
+  <key name="2" >
+  <send>south</send>
+  </key>
+
+  <key name="3" >
+  <send>se</send>
+  </key>
+
+  <key name="4" >
+  <send>west</send>
+  </key>
+
+  <key name="5" >
+  <send>WHO</send>
+  </key>
+
+  <key name="6" >
+  <send>east</send>
+  </key>
+
+  <key name="7" >
+  <send>nw</send>
+  </key>
+
+  <key name="8" >
+  <send>north</send>
+  </key>
+
+  <key name="9" >
+  <send>ne</send>
+  </key>
+
+  <key name="." >
+  <send>hide</send>
+  </key>
+
+  <key name="/" >
+  <send>inventory</send>
+  </key>
+
+  <key name="*" >
+  <send>score</send>
+  </key>
+
+  <key name="-" >
+  <send>up</send>
+  </key>
+
+  <key name="+" >
+  <send>down</send>
+  </key>
+
+  <key name="Ctrl+0" >
+  </key>
+
+  <key name="Ctrl+1" >
+  </key>
+
+  <key name="Ctrl+2" >
+  </key>
+
+  <key name="Ctrl+3" >
+  </key>
+
+  <key name="Ctrl+4" >
+  </key>
+
+  <key name="Ctrl+5" >
+  </key>
+
+  <key name="Ctrl+6" >
+  </key>
+
+  <key name="Ctrl+7" >
+  </key>
+
+  <key name="Ctrl+8" >
+  </key>
+
+  <key name="Ctrl+9" >
+  </key>
+
+  <key name="Ctrl+." >
+  </key>
+
+  <key name="Ctrl+/" >
+  </key>
+
+  <key name="Ctrl+*" >
+  </key>
+
+  <key name="Ctrl+-" >
+  </key>
+
+  <key name="Ctrl++" >
+  </key>
+</keypad>
+
+<!-- printing -->
+
+<printing
+   muclient_version="5.06"
+   world_file_version="15"
+   date_saved="2020-11-09 10:42:56"
+  >
+
+<ansi>
+
+ <normal>
+
+ </normal>
+
+ <bold>
+   <style seq="1" bold="y" />
+   <style seq="2" bold="y" />
+   <style seq="3" bold="y" />
+   <style seq="4" bold="y" />
+   <style seq="5" bold="y" />
+   <style seq="6" bold="y" />
+   <style seq="7" bold="y" />
+   <style seq="8" bold="y" />
+
+ </bold>
+
+</ansi>
+</printing>
+
+<!-- plugins -->
+<include name="LuaAudio.xml" plugin="y" />
+<include name="auto_retyping.xml" plugin="y" />
+</muclient>
